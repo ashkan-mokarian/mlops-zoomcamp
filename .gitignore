@@ -1,5 +1,9 @@
 # This project
 01-intro/data
+hw02-experiment-tracking/data
+hw02-experiment-tracking/mlartifacts
+*.code-workspace
+*.pkl
 
 # OS X
 .DS_Store
