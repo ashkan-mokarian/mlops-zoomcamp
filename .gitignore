@@ -4,6 +4,9 @@ hw02-experiment-tracking/data
 hw02-experiment-tracking/mlartifacts
 *.code-workspace
 *.pkl
+hw03-orchestration/mlruns
+hw03-orchestration/models
+**/mlflow.db
 
 # OS X
 .DS_Store

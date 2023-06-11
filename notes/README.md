@@ -4,6 +4,7 @@ Minimal personal notes along the way.
 # TOC
 
 * [Experiment Tracking](#experiment-tracking): definition and goals; MLflow;
+* [Orchestration](#orchestration): using Prefect here; Tasks and Flows in Prefect;
 
 # Experiment Tracking
 
@@ -43,4 +44,27 @@ A picture describing ml engineering. More on it [here](https://neptune.ai/blog/m
 Until now, we worked with MLflow tracking server which stored information about different runs in the experiment, and it is mostly used for designing and model selection. After a model gets ready for production and deployment, the *MLflow model registry* keeps track of the production ready models. It doesn't deploy, but just tracks a list of production ready models.
 
 Need ```from mlflow.tracking import MlflowClient```. This client object has several methods to search, and choose specific runs programmatically. For minimal example look [here](../hw02-experiment-tracking/register_model.py).
+
+# Orchestration
+
+### Tasks
+Python function decorated with @task from Prefect. A unit of work in a prefect workflow.
+
+### Flow
+Also py function decorated with @flow. Container for workflow logic. Flows can also call other flows termed subflows.
+
+Similar to other workflow management systems, first run the server using ```prefect server start```. This open an API server node to interact with the server during your runs. After that, a message appears starting with ```prefect config set ...```, run it in another terminal to set the config of api for the server in it. In this terminal, you can run python files decorated with flow and task, in order to interact with the prefect backend server. The results can be viewed in the UI and explored accordingly.
+
+## Deployment
+
+First create a prefect project in the project directory using ```prefect project init```. This will create files project.yaml and deployment.yaml
+
+Next create a worker pool, either using cli or the UI. I think this defines some resources to be used to run flows on the from a pool of tasks. It can be a process on a local machine or other remote ones.
+
+Then run the local server or connect to a remote server.
+
+deploy the flow entrypoint to the server as ```prefect deploy my-flow.py:entry-point[this is the function name entry point for the flow] -n "deployment name" -p worker-pool-name```
+
+Start a run by ```prefect deployment run flow-name/deployment-name```
+
 
