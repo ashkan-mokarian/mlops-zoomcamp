@@ -67,4 +67,6 @@ deploy the flow entrypoint to the server as ```prefect deploy my-flow.py:entry-p
 
 Start a run by ```prefect deployment run flow-name/deployment-name```
 
+This workflow clones from a remote repo. So make sure to have the data included in your repo. Moreover, apparently, it assumes the cwd to be the root of the repo. These comments are for the case where the deployment settings are left without any changes. You can probably change them to your specific need, but here we just used the default settings.
+
 
